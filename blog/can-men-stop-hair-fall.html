@@ -45,14 +45,22 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   .cursor-ring{display:block;position:fixed;width:36px;height:36px;border:1px solid rgba(153,0,0,.4);border-radius:50%;pointer-events:none;z-index:99997;transform:translate(-50%,-50%);transition:width .25s,height .25s,border-color .25s}
 }
 
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(153,0,0,.08);background:rgba(0,0,0,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
-.nav-logo{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:26px;letter-spacing:8px;color:var(--red);text-decoration:none}
-.nav-links{display:flex;gap:28px}
-.nav-link{font-size:9px;letter-spacing:4px;color:#555;text-transform:uppercase;text-decoration:none;transition:color .2s}
-.nav-link:hover{color:var(--offwhite)}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(153,0,0,.15);background:rgba(0,0,0,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.nav-logo{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:26px;letter-spacing:8px;color:var(--red);text-decoration:none;-webkit-tap-highlight-color:transparent}
+.nav-links{display:flex;align-items:center;gap:12px}
+.nav-blog{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#ccc;text-decoration:none;border:1px solid #444;padding:8px 16px;transition:border-color .2s,color .2s;-webkit-tap-highlight-color:transparent;display:flex;align-items:center;gap:7px}
+.nav-blog::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0}
+.nav-blog:hover{border-color:var(--red);color:#fff}
+.nav-tribe{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#fff;text-decoration:none;background:var(--red);padding:10px 20px;transition:background .2s;-webkit-tap-highlight-color:transparent;white-space:nowrap}
+.nav-tribe:hover{background:#bb0000}
+.nav-tribe:active{background:#bb0000;transform:scale(.98)}
+@media(max-width:480px){
+  .nav-blog{display:none}
+  .nav-tribe{padding:9px 14px;font-size:9px;letter-spacing:2px}
+}
 
 .breadcrumb{padding:80px 40px 0;display:flex;align-items:center;gap:10px;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#333;font-family:'Barlow Condensed',sans-serif}
-.breadcrumb a{color:#333;text-decoration:none;transition:color .2s}
+.breadcrumb a{color:#777;text-decoration:none;transition:color .2s}
 .breadcrumb a:hover{color:var(--red)}
 
 .post-header{padding:28px 40px 0;max-width:860px;margin:0 auto}
@@ -63,12 +71,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 32px;height:64px;
 .read-time{font-size:9px;letter-spacing:3px;color:#444;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif;margin-left:auto}
 .post-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(38px,6.5vw,76px);text-transform:uppercase;letter-spacing:2px;line-height:.92;color:var(--offwhite);margin-bottom:20px;opacity:0;animation:slam-in .7s cubic-bezier(.16,1,.3,1) forwards .2s}
 .post-title .red{color:var(--red)}
-.post-desc{font-size:clamp(14px,2vw,17px);line-height:1.8;color:#777;max-width:600px;margin-bottom:28px;opacity:0;animation:fade-up .6s ease forwards .45s}
+.post-desc{font-size:clamp(14px,2vw,17px);line-height:1.8;color:#aaa;max-width:600px;margin-bottom:28px;opacity:0;animation:fade-up .6s ease forwards .45s}
 .meta-bar{display:flex;align-items:stretch;border-top:1px solid #111;border-bottom:1px solid #111;opacity:0;animation:fade-up .5s ease forwards .6s}
 .meta-item{padding:13px 22px;border-right:1px solid #111;display:flex;flex-direction:column;gap:4px;flex-shrink:0}
 .meta-item:last-child{border-right:none;margin-left:auto}
 .meta-label{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:#333}
-.meta-value{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:12px;letter-spacing:1px;color:#777}
+.meta-value{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:12px;letter-spacing:1px;color:#ccc}
 
 .post-cover{max-width:860px;margin:0 auto;position:relative;overflow:hidden;height:clamp(240px,40vw,460px);background:#080808}
 .post-cover img{width:100%;height:100%;object-fit:cover;display:block;opacity:.65}
@@ -78,43 +86,43 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 32px;height:64px;
 .article-wrap{display:grid;grid-template-columns:1fr min(700px,calc(100% - 80px)) 1fr}
 .article-body{grid-column:2;padding:56px 0 80px}
 
-.article-body p{font-size:16px;line-height:1.95;color:#aaa;margin-bottom:24px;font-weight:300}
-.article-body p strong{color:#ddd;font-weight:500}
+.article-body p{font-size:16px;line-height:1.95;color:#e0ddd8;margin-bottom:24px;font-weight:300}
+.article-body p strong{color:#fff;font-weight:500}
 .article-body p em{color:var(--red);font-style:normal}
 .article-body > p:first-of-type::first-letter{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:76px;float:left;line-height:.75;margin:10px 14px 0 0;color:var(--red);text-transform:uppercase}
-.article-body h2{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(22px,3.2vw,34px);text-transform:uppercase;letter-spacing:2px;color:#ddd;line-height:1;margin:52px 0 16px;padding-top:44px;border-top:1px solid #111}
-.article-body h3{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(17px,2.2vw,22px);text-transform:uppercase;letter-spacing:2px;color:#888;margin:32px 0 12px}
+.article-body h2{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(22px,3.2vw,34px);text-transform:uppercase;letter-spacing:2px;color:#fff;line-height:1;margin:52px 0 16px;padding-top:44px;border-top:1px solid #1a1a1a}
+.article-body h3{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(17px,2.2vw,22px);text-transform:uppercase;letter-spacing:2px;color:#ccc;margin:32px 0 12px}
 
 .article-body ul{margin:0 0 24px;padding:0;list-style:none}
-.article-body ul li{font-size:15px;color:#888;line-height:1.8;padding:7px 0 7px 20px;position:relative;border-bottom:1px solid #0d0d0d;font-weight:300}
+.article-body ul li{font-size:15px;color:#ccc;line-height:1.8;padding:7px 0 7px 20px;position:relative;border-bottom:1px solid #111;font-weight:300}
 .article-body ul li::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:6px;height:1px;background:var(--red)}
-.article-body ul li strong{color:#ccc;font-weight:500}
+.article-body ul li strong{color:#fff;font-weight:500}
 
 .phase-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#111;margin:28px 0}
 .phase-card{background:#060606;padding:22px 18px;border-bottom:2px solid transparent;transition:border-color .2s}
 .phase-card:hover{border-bottom-color:var(--red)}
 .phase-n{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:30px;color:#222;margin-bottom:6px}
 .phase-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:8px}
-.phase-desc{font-size:12px;color:#555;line-height:1.6}
+.phase-desc{font-size:12px;color:#888;line-height:1.6}
 
 .stat-callout{display:flex;align-items:flex-start;gap:20px;border:1px solid #111;padding:24px;margin:32px 0;background:#050505;position:relative;overflow:hidden}
 .stat-callout::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--red)}
 .stat-num{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:clamp(38px,5.5vw,54px);color:var(--red);line-height:1;letter-spacing:-2px;flex-shrink:0}
-.stat-text{font-size:13px;color:#666;line-height:1.7;padding-top:4px}
-.stat-text strong{color:#ccc;font-weight:500;display:block;margin-bottom:4px;font-size:14px}
+.stat-text{font-size:13px;color:#bbb;line-height:1.7;padding-top:4px}
+.stat-text strong{color:#fff;font-weight:500;display:block;margin-bottom:4px;font-size:14px}
 
 .pullquote{border-left:3px solid var(--red);padding:20px 26px;margin:40px 0;background:#050505}
-.pullquote p{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(18px,2.8vw,26px);text-transform:uppercase;letter-spacing:2px;color:#ccc;line-height:1.2;margin:0!important}
-.pullquote p::first-letter{all:unset;font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#ccc}
+.pullquote p{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(18px,2.8vw,26px);text-transform:uppercase;letter-spacing:2px;color:#fff;line-height:1.2;margin:0!important}
+.pullquote p::first-letter{all:unset;font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#fff}
 
 .callout{border:1px solid #1a1a1a;padding:24px 28px;margin:36px 0;position:relative;background:#050505}
 .callout::before{content:attr(data-label);position:absolute;top:-9px;left:20px;background:var(--black);padding:0 10px;font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--red);font-family:'Barlow Condensed',sans-serif;font-weight:700}
-.callout p{margin-bottom:0!important;color:#666!important;font-size:14px!important}
+.callout p{margin-bottom:0!important;color:#bbb!important;font-size:14px!important}
 
 .nutrient-table{width:100%;border-collapse:collapse;margin:20px 0}
 .nutrient-table th{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#444;padding:10px 12px;text-align:left;border-bottom:1px solid #111;background:#050505}
-.nutrient-table td{font-size:13px;color:#777;padding:12px;border-bottom:1px solid #0a0a0a;vertical-align:top;line-height:1.5}
-.nutrient-table td:first-child{color:#bbb;font-weight:400}
+.nutrient-table td{font-size:13px;color:#aaa;padding:12px;border-bottom:1px solid #111;vertical-align:top;line-height:1.5}
+.nutrient-table td:first-child{color:#fff;font-weight:500}
 
 .post-image{margin:36px 0;overflow:hidden;background:#080808}
 .post-image img{width:100%;display:block;opacity:.68;transition:opacity .4s}
@@ -137,23 +145,23 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 32px;height:64px;
 .related-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--red);transition:width .3s}
 .related-card:hover::after{width:100%}
 .rel-cat{font-size:8px;letter-spacing:3px;color:var(--red);text-transform:uppercase;margin-bottom:10px;font-family:'Barlow Condensed',sans-serif;font-weight:700}
-.rel-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18px;text-transform:uppercase;letter-spacing:1px;color:#555;line-height:1.1;margin-bottom:16px;transition:color .2s}
-.related-card:hover .rel-title{color:#ccc}
+.rel-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18px;text-transform:uppercase;letter-spacing:1px;color:#888;line-height:1.1;margin-bottom:16px;transition:color .2s}
+.related-card:hover .rel-title{color:#fff}
 .rel-arrow{font-size:9px;letter-spacing:3px;color:#333;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif;font-weight:700}
 
 .post-cta{background:#040404;border-top:1px solid #0d0d0d;padding:60px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:28px}
 .cta-ey{font-size:8px;letter-spacing:5px;color:var(--red);text-transform:uppercase;margin-bottom:12px;font-family:'Barlow Condensed',sans-serif}
 .cta-h{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(36px,5vw,60px);text-transform:uppercase;letter-spacing:2px;line-height:.92}
-.cta-h .dim{color:#333}
+.cta-h .dim{color:#888}
 .cta-h .red{color:var(--red)}
-.cta-sub{font-size:13px;color:#555;margin-top:12px;line-height:1.8;max-width:280px}
+.cta-sub{font-size:13px;color:#aaa;margin-top:12px;line-height:1.8;max-width:280px}
 .btn-tribe{display:inline-block;background:var(--red);color:var(--offwhite);font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:5px;text-transform:uppercase;padding:18px 44px;text-decoration:none;transition:background .2s;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%)}
 @media(hover:hover){.btn-tribe:hover{background:#bb0000}}
 .btn-tribe:active{background:#bb0000;transform:scale(.98)}
 
 footer{padding:26px 40px;border-top:1px solid #0d0d0d;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-bottom:calc(26px + env(safe-area-inset-bottom))}
-.foot-logo{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;letter-spacing:6px;color:#333}
-.foot-r{font-size:9px;letter-spacing:2px;color:#333;text-transform:uppercase}
+.foot-logo{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;letter-spacing:6px;color:#444}
+.foot-r{font-size:9px;letter-spacing:2px;color:#444;text-transform:uppercase}
 
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
@@ -192,17 +200,17 @@ footer{padding:26px 40px;border-top:1px solid #0d0d0d;display:flex;align-items:c
 <nav>
   <a href="/" class="nav-logo">STRYK</a>
   <div class="nav-links">
-    <a href="/blog" class="nav-link">Blog</a>
-    <a href="/#tribe" class="nav-link">Join Tribe</a>
+    <a href="/blog" class="nav-blog">Blog</a>
+    <a href="https://getstryk.in/?utm_source=blog_post&utm_medium=nav_cta&utm_campaign=can-men-stop-hair-fall&utm_content=join_tribe_nav" class="nav-tribe" onclick="gtag('event','cta_click',{button_location:'nav',button_text:'Join Tribe',page:'can-men-stop-hair-fall'})">Join Tribe →</a>
   </div>
 </nav>
 
 <div class="breadcrumb">
   <a href="/">Home</a>
-  <span style="color:#222">/</span>
+  <span style="color:#333">/</span>
   <a href="/blog">Blog</a>
-  <span style="color:#222">/</span>
-  <span style="color:#444">Can Men Stop Hair Fall?</span>
+  <span style="color:#333">/</span>
+  <span style="color:#888">Can Men Stop Hair Fall?</span>
 </div>
 
 <div class="post-header">
@@ -343,7 +351,7 @@ footer{padding:26px 40px;border-top:1px solid #0d0d0d;display:flex;align-items:c
 
     <p>One of the biggest mistakes men make is waiting too long. Hair follicles that have shrunk significantly may still recover. But follicles that have completely stopped growing rarely restart without medical procedures. That is why early action matters.</p>
 
-    <p>If you are noticing excess hair shedding, visible thinning, or a rapidly changing hairline — take it seriously now. Not later. <strong>The window for slowing this down is open right now.</strong></p>
+    <p>If you are noticing excess hair shedding, visible thinning, or a rapidly changing hairline — take it seriously now. Not later. <strong>The window for slowing this down is open right now.</strong> <a href="/?utm_source=stryk_blog&utm_medium=internal_link&utm_campaign=can-men-stop-hair-fall&utm_content=early_action_link" style="color:var(--red);text-decoration:none;border-bottom:1px solid rgba(153,0,0,.3)">STRYK was built exactly for this moment.</a></p>
 
     <div class="callout" data-label="The STRYK Angle">
       <p>Every Indian styling product that performs at a natural finish level is imported, expensive, or hard to find. No Indian brand has built a clean light hold matte finish product with a quality applicator — until now. What you put in your hair every day matters more than people realise.</p>
@@ -353,7 +361,7 @@ footer{padding:26px 40px;border-top:1px solid #0d0d0d;display:flex;align-items:c
 
     <h2>The Bottom Line</h2>
 
-    <p>Hair fall is extremely common for men, but it is not always something you have to simply accept. In many cases, the right combination of <em>scalp care, proper nutrition, healthier habits, and the right products</em> can slow down hair loss and improve overall hair strength.</p>
+    <p>Hair fall is extremely common for men, but it is not always something you have to simply accept. In many cases, the right combination of <em>scalp care, proper nutrition, healthier habits, and the right products</em> can slow down hair loss and improve overall hair strength. For more on what actually works, <a href="/blog" style="color:var(--red);text-decoration:none;border-bottom:1px solid rgba(153,0,0,.3)">read the full STRYK Hair Intelligence series.</a></p>
 
     <p>The sooner you start paying attention to it, the better your chances of keeping it strong for the long run.</p>
 

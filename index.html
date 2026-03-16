@@ -44,7 +44,7 @@ body::before {
   opacity: 0.04; pointer-events: none; z-index: 9999;
 }
 
-/* CURSOR — desktop only */
+/* CURSOR */
 .cursor, .cursor-ring { display: none; }
 @media (pointer: fine) {
   .cursor {
@@ -103,9 +103,7 @@ nav {
 }
 
 /* NAV RIGHT GROUP */
-.nav-right-group {
-  display: flex; align-items: center; gap: 16px;
-}
+.nav-right-group { display: flex; align-items: center; gap: 16px; }
 
 /* HAMBURGER */
 .nav-hamburger {
@@ -217,7 +215,11 @@ nav {
   color: #555; margin-top: 20px; letter-spacing: 0.3px; padding: 0 8px;
   opacity: 0; animation: fade-up 0.6s ease forwards 1.1s;
 }
-.hero-cta-wrap { margin-top: 48px; opacity: 0; animation: fade-up 0.6s ease forwards 1.3s; }
+.hero-cta-wrap {
+  margin-top: 48px;
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+  opacity: 0; animation: fade-up 0.6s ease forwards 1.3s;
+}
 
 /* BUTTONS */
 .btn-tribe {
@@ -247,6 +249,26 @@ nav {
 }
 @media(hover:hover){.btn-outline:hover{border-color:var(--red);color:var(--offwhite)}}
 .btn-outline:active { border-color: var(--red); color: var(--offwhite); }
+
+/* INSTAGRAM BUTTON */
+.btn-instagram {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  background: #f5f5f5; color: #111;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700;
+  letter-spacing: 4px; text-transform: uppercase; padding: 12px 28px;
+  border: 1px solid #f5f5f5; cursor: pointer; text-decoration: none;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+}
+.btn-instagram svg {
+  width: 14px; height: 14px; flex-shrink: 0;
+  transition: stroke 0.2s;
+}
+@media(hover:hover){
+  .btn-instagram:hover { background: #fff; border-color: #fff; color: #000; }
+  .btn-instagram:hover svg { stroke: #000; }
+}
+.btn-instagram:active { background: #e8e8e8; }
 
 /* TICKER */
 .ticker-wrap {
@@ -432,6 +454,7 @@ footer {
   .final-cta-row .btn-tribe,
   .final-cta-row .btn-outline { text-align: center; width: 100%; }
   .btn-tribe { clip-path: none; }
+  .btn-instagram { width: 100%; }
   footer { justify-content: center; text-align: center; }
 }
 @media(max-width:360px){
@@ -464,6 +487,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <a href="/">Home</a>
   <a href="/blog">Blog</a>
   <a href="#tribe">Early Access</a>
+  <a href="https://www.instagram.com/stryk.hype/" target="_blank" rel="noopener">Instagram</a>
   <a href="#tribe" class="mob-cta">Join The Tribe →</a>
 </div>
 
@@ -479,6 +503,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <p class="hero-desc">5 seconds. 12 hours. No mirror. No routine.<br>A 30ml roll-on that lives in your pocket and moves with you.</p>
   <div class="hero-cta-wrap">
     <a href="#tribe" class="btn-tribe">Join The Tribe</a>
+    <a href="https://www.instagram.com/stryk.hype/" target="_blank" rel="noopener" class="btn-instagram" onclick="dataLayer.push({event:'instagram_click',location:'hero'})">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="0.8" fill="#111" stroke="none"/>
+      </svg>
+      Follow on Instagram
+    </a>
   </div>
 </section>
 
@@ -561,15 +593,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <footer>
   <div class="footer-logo">STRYK</div>
-  <div class="footer-right">getstryk.in &nbsp;·&nbsp; @stryk.in &nbsp;·&nbsp; © 2026</div>
+  <div class="footer-right">
+    getstryk.in &nbsp;·&nbsp;
+    <a href="https://www.instagram.com/stryk.hype/" target="_blank" rel="noopener" style="color:#222;text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='#f5f5f5'" onmouseout="this.style.color='#222'" onclick="dataLayer.push({event:'instagram_click',location:'footer'})">@stryk.hype</a>
+    &nbsp;·&nbsp; © 2026
+  </div>
 </footer>
 
 <script>
-// CURSOR — desktop only
+// CURSOR
 const isTouchDevice = () => window.matchMedia('(pointer: coarse)').matches;
 const cur = document.getElementById('cur');
 const ring = document.getElementById('curRing');
-
 if (!isTouchDevice()) {
   let mx=0,my=0,rx=0,ry=0;
   document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
@@ -579,13 +614,13 @@ if (!isTouchDevice()) {
     ring.style.left=rx+'px'; ring.style.top=ry+'px';
     requestAnimationFrame(loop);
   })();
-  document.querySelectorAll('.btn-tribe,.form-submit,.btn-outline').forEach(b=>{
+  document.querySelectorAll('.btn-tribe,.form-submit,.btn-outline,.btn-instagram').forEach(b=>{
     b.addEventListener('mouseenter',()=>{ cur.style.width='14px';cur.style.height='14px';ring.style.width='52px';ring.style.height='52px';ring.style.borderColor='rgba(153,0,0,0.8)'; });
     b.addEventListener('mouseleave',()=>{ cur.style.width='8px';cur.style.height='8px';ring.style.width='36px';ring.style.height='36px';ring.style.borderColor='rgba(153,0,0,0.4)'; });
   });
 }
 
-// SMOOTH ANCHOR SCROLL — accounts for fixed nav height
+// SMOOTH ANCHOR SCROLL
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const id = a.getAttribute('href');
@@ -610,10 +645,9 @@ const obs = new IntersectionObserver(entries => {
 }, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
 
-// HAMBURGER MENU
+// HAMBURGER
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
-
 hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('open');
   mobileMenu.classList.toggle('open');
@@ -642,18 +676,15 @@ async function handleSubmit() {
   const input = document.getElementById('emailInput');
   const btn = document.getElementById('submitBtn');
   const email = input.value.trim();
-
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     input.style.borderColor = '#990000';
     input.focus();
     return;
   }
-
   btn.textContent = 'JOINING...';
   btn.disabled = true;
   btn.style.opacity = '0.6';
   input.disabled = true;
-
   try {
     const res = await fetch(`${SUPABASE_URL}/rest/v1/tribe_waitlist`, {
       method: 'POST',
@@ -665,7 +696,6 @@ async function handleSubmit() {
       },
       body: JSON.stringify({ email, joined_at: new Date().toISOString(), is_founding_member: true })
     });
-
     if (res.status === 201) {
       document.getElementById('formWrap').style.display = 'none';
       const s = document.getElementById('formSuccess');
